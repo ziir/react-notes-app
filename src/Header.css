@@ -1,0 +1,71 @@
+.Header-logo {
+  height: 3rem;
+}
+
+.Header {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: var(--spacing-xsmall) var(--spacing-small);
+
+  font-size: 1rem;
+  background-color: var(--color-gray-dark);
+  color: white;
+}
+
+.Header h1 {
+  flex-grow: 1;
+  margin: 0;
+
+  text-align: right;
+}
+
+.Header h1 a {
+  display: inline-flex;
+  align-items: center;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.Header h1 a:hover {
+  filter: contrast(175%);
+}
+
+.Header h1 a:focus {
+  outline: var(--spacing-xsmall) solid var(--color-blue);
+}
+
+.Header-cta {
+  display: flex;
+  padding: var(--spacing-small);
+
+  background-color: var(--color-blue);
+  color: var(--color-gray-dark);
+  text-decoration: none;
+}
+
+.Header-cta:focus {
+  outline: var(--spacing-xsmall) solid white;
+}
+
+.Header-cta:hover {
+  filter: contrast(175%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Header-logo:hover {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

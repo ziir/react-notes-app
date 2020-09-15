@@ -5,9 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  color: var(--color-gray-dark);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --color-blue: #61dafb;
+  --color-gray-dark: #282c34;
+
+  --spacing-xsmall: 0.333rem;
+  --spacing-small: 0.666rem;
+  --spacing: 1rem;
+  --spacing-large: 1.333rem;
+  --spacing-xlarge: 1.666rem;
 }
