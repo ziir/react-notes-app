@@ -19,3 +19,8 @@ body {
   --spacing-large: 1.333rem;
   --spacing-xlarge: 1.666rem;
 }
+
+p {
+  margin: 0;
+  margin-bottom: var(--spacing-small);
+}

@@ -2,6 +2,7 @@ import React from 'react';
 
 import Router from './modules/Router';
 import Header from './Header';
+import List from './List';
 
 import routes from './routes';
 
@@ -14,7 +15,12 @@ function App() {
         {(children) => (
           <>
             <Header />
-            <main>{children}</main>
+            <main className="App-main">
+              <section>
+                <List />
+              </section>
+              {children && <section>{children}</section>}
+            </main>
           </>
         )}
       </Router>

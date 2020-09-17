@@ -12,7 +12,7 @@ function makeHandler(path, Component, setChildren, router, setContext) {
   return function handler_(ctx, next) {
     console.log('Handling for ', path, Component, next);
     setContext({ symbol: Symbol(), router });
-    setChildren(<Component router={router} ctx={ctx} />);
+    setChildren(Component && <Component router={router} ctx={ctx} />);
   };
 }
 

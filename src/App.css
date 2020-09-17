@@ -1,0 +1,14 @@
+.App {
+}
+
+.App-main {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing);
+}
+
+.App-main section {
+  flex-grow: 1;
+  padding: var(--spacing-xsmall);
+  border: 1px solid red;
+}

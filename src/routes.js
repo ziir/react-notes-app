@@ -1,3 +1,3 @@
-const routes = { '/new': () => 'Hello, World!' };
+const routes = { '/': null, '/new': () => 'Some form inputs' };
 
 export default routes;
