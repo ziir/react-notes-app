@@ -1,4 +1,7 @@
 import React from 'react';
+
+import Link from './modules/Router/Link';
+
 import './Header.css';
 import logo from './logo.svg';
 
@@ -6,14 +9,14 @@ function Header() {
   return (
     <header className="Header">
       <h1>
-        <a href="/">
+        <Link to="/">
           <img src={logo} className="Header-logo" alt="" />
           My App
-        </a>
+        </Link>
       </h1>
-      <a className="Header-cta" href="#new">
+      <Link className="Header-cta" to="/new">
         New Thing
-      </a>
+      </Link>
     </header>
   );
 }
