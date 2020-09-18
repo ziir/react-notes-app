@@ -1,0 +1,20 @@
+.ListItem {
+}
+
+.ListItem-link {
+  display: flex;
+  padding: var(--spacing-small);
+  color: var(--color-gray-dark);
+  text-decoration: none;
+}
+
+.ListItem-link:hover {
+  background-color: var(--color-blue);
+}
+
+.ListItem-link:focus {
+  outline: var(--spacing-xsmall) solid var(--color-blue);
+}
+
+.ListItem-link[replace] {
+}

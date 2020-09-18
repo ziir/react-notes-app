@@ -4,9 +4,12 @@ import Router from './modules/Router';
 import Header from './Header';
 import List from './List';
 
-import routes from './routes';
-
 import './App.css';
+
+const routes = {
+  '/': null,
+  '/new': () => 'Some form inputs',
+};
 
 function App() {
   return (

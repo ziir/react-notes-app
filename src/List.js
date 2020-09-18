@@ -1,12 +1,16 @@
 import React from 'react';
 import Link from './modules/Router/Link';
+import { getAllItems } from './modules/storage';
+import ListItem from './ListItem';
+
+import './List.css';
 
 function retrieveItems() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // return reject(new Error('Quota exceeded'));
-      resolve();
-    }, 2000);
+      const items = getAllItems();
+      resolve(items);
+    }, 500);
   });
 }
 
@@ -61,7 +65,13 @@ function List() {
     );
   }
 
-  return items.map((item) => JSON.stringify(item, null, 2));
+  return (
+    <ul className="List">
+      {items.map((item) => (
+        <ListItem key={item.id} id={item.id} title={item.title} />
+      ))}
+    </ul>
+  );
 }
 
 export default List;
