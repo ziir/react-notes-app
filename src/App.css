@@ -1,13 +1,19 @@
 .App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-main {
+  flex-grow: 1;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   padding: var(--spacing);
 }
 
 .App-main section {
+  overflow: auto;
   flex-grow: 1;
   padding: var(--spacing-xsmall);
   border: 1px solid red;

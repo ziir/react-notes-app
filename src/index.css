@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -18,6 +19,10 @@ body {
   --spacing: 1rem;
   --spacing-large: 1.333rem;
   --spacing-xlarge: 1.666rem;
+}
+
+#root {
+  height: 100%;
 }
 
 p {
