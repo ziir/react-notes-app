@@ -3,12 +3,13 @@ import React from 'react';
 import Router from './modules/Router';
 import Header from './Header';
 import List from './List';
+import Create from './Create';
 
 import './App.css';
 
 const routes = {
   '/': null,
-  '/new': () => 'Some form inputs',
+  '/new': Create,
 };
 
 function App() {

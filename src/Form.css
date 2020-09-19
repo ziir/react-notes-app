@@ -1,0 +1,22 @@
+.Form {
+}
+
+.Form-fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+.Form-label {
+  margin-bottom: var(--spacing-xsmall);
+}
+
+.Form-input {
+  padding: var(--spacing-xsmall);
+  min-height: var(--spacing-large);
+  border: 1px solid var(--color-gray-dark);
+}
+
+.Form-textarea {
+  resize: vertical;
+}
