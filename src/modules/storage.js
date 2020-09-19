@@ -15,8 +15,8 @@ export function getAllItems() {
   return Object.keys(items).map((id) => ({ id, title: items[id] }));
 }
 
-export function getItem(id) {
-  return window.localStorage.getItem(`${namespace}.${id}`);
+export function getItemContent(id) {
+  return window.localStorage.getItem(`${namespace}.${id}`) || '';
 }
 
 export function deleteItem(id) {

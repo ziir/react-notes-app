@@ -8,9 +8,12 @@ function notFound() {
   return '404 Not Found';
 }
 
-function makeHandler(Component, router, setContext) {
+function makeHandler(route, Component, router, setContext) {
   return function handler_(location) {
     setContext({
+      route,
+      location,
+      component: Component,
       symbol: Symbol(),
       children: Component
         ? function Route(props) {
@@ -29,8 +32,11 @@ export function Router({
   const router = useRouter();
   const routesRef = React.useRef(null);
   const [context, setContext] = React.useState({
+    route: null,
     symbol: null,
     children: null,
+    location: null,
+    component: null,
   });
 
   React.useEffect(() => {
@@ -46,10 +52,9 @@ export function Router({
     if (paths.length) {
       const newRoutes = paths.reduce((acc, path) => {
         const component = _routes[path];
-        const handler = makeHandler(component, router, setContext);
+        const handler = makeHandler(path, component, router, setContext);
         router.get(path, handler);
         acc[path] = {
-          path,
           component,
           handler,
         };
@@ -59,6 +64,7 @@ export function Router({
       const notFoundPath = '*';
       const notFoundComponent = _routes[notFoundPath] || notFound;
       const notFoundHandler = makeHandler(
+        notFoundPath,
         notFoundComponent,
         router,
         setContext
@@ -79,7 +85,7 @@ export function Router({
 
   return (
     <RouterContext.Provider value={context.symbol}>
-      {childrenProp(context.children)}
+      {childrenProp(context)}
     </RouterContext.Provider>
   );
 }

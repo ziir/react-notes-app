@@ -4,6 +4,7 @@ import Router from './modules/Router';
 import Header from './Header';
 import List from './List';
 import Create from './Create';
+import Viewer from './Viewer';
 
 import { initalState, reducer, LOADING, SET, ERROR } from './modules/state';
 import { retrieveItems } from './modules/items';
@@ -13,6 +14,7 @@ import './App.css';
 const routes = {
   '/': null,
   '/new': Create,
+  '/view/:id': Viewer,
 };
 
 function App() {
@@ -36,21 +38,32 @@ function App() {
   return (
     <div className="App">
       <Router routes={routes}>
-        {(Route) => (
-          <>
-            <Header />
-            <main className="App-main">
-              <section>
-                <List {...state} />
-              </section>
-              {Route && (
+        {({ children: Route, component, location }) => {
+          let routeProps = { dispatch };
+          if (component === Viewer) {
+            routeProps = {
+              ...routeProps,
+              key: location.params.id,
+              items: state.items,
+            };
+          }
+
+          return (
+            <>
+              <Header />
+              <main className="App-main">
                 <section>
-                  <Route dispatch={dispatch} />
+                  <List {...state} />
                 </section>
-              )}
-            </main>
-          </>
-        )}
+                {Route && (
+                  <section>
+                    <Route {...routeProps} />
+                  </section>
+                )}
+              </main>
+            </>
+          );
+        }}
       </Router>
     </div>
   );
