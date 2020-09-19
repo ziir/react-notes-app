@@ -5,6 +5,9 @@ import Header from './Header';
 import List from './List';
 import Create from './Create';
 
+import { initalState, reducer, LOADING, SET, ERROR } from './modules/state';
+import { retrieveItems } from './modules/items';
+
 import './App.css';
 
 const routes = {
@@ -13,17 +16,38 @@ const routes = {
 };
 
 function App() {
+  const [state, dispatch] = React.useReducer(reducer, initalState);
+
+  React.useEffect(() => {
+    async function retrieveItemsOnMount() {
+      const retrieval = retrieveItems();
+      dispatch({ type: LOADING });
+      try {
+        const items = await retrieval;
+        dispatch({ type: SET, payload: items && items.length ? items : [] });
+      } catch (err) {
+        dispatch({ type: ERROR, payload: err });
+      }
+    }
+
+    retrieveItemsOnMount();
+  }, []);
+
   return (
     <div className="App">
       <Router routes={routes}>
-        {(children) => (
+        {(Route) => (
           <>
             <Header />
             <main className="App-main">
               <section>
-                <List />
+                <List {...state} />
               </section>
-              {children && <section>{children}</section>}
+              {Route && (
+                <section>
+                  <Route dispatch={dispatch} />
+                </section>
+              )}
             </main>
           </>
         )}

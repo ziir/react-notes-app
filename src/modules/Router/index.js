@@ -8,39 +8,45 @@ function notFound() {
   return '404 Not Found';
 }
 
-function makeHandler(path, Component, setChildren, router, setContext) {
-  return function handler_(ctx, next) {
-    console.log('Handling for ', path, Component, next);
-    setContext({ symbol: Symbol(), router });
-    setChildren(Component && <Component router={router} ctx={ctx} />);
+function makeHandler(Component, router, setContext) {
+  return function handler_(location) {
+    setContext({
+      symbol: Symbol(),
+      children: Component
+        ? function Route(props) {
+            return <Component router={router} location={location} {...props} />;
+          }
+        : null,
+    });
   };
 }
 
-function Router({ children: childrenProp, routes: _routes = {} }) {
+export function Router({
+  children: childrenProp,
+  routes: _routes = {},
+  ...extra
+}) {
   const router = useRouter();
-  const [routes, setRoutes] = React.useState(_routes);
-  const [children, setChildren] = React.useState(null);
-  const [context, setContext] = React.useState({ symbol: Symbol(), router });
+  const routesRef = React.useRef(null);
+  const [context, setContext] = React.useState({
+    symbol: null,
+    children: null,
+  });
 
   React.useEffect(() => {
-    const registered = Object.keys(routes);
+    const registered = Object.keys(routesRef.current || {});
     if (registered.length) {
-      registered.forEach(router.delete);
-      setChildren(null);
-      setRoutes({});
+      registered.forEach((path) =>
+        router.delete(path, routesRef.current[path].handler)
+      );
+      routesRef.current = {};
     }
 
     const paths = Object.keys(_routes).filter((path) => path !== '*');
     if (paths.length) {
       const newRoutes = paths.reduce((acc, path) => {
         const component = _routes[path];
-        const handler = makeHandler(
-          path,
-          component,
-          setChildren,
-          router,
-          setContext
-        );
+        const handler = makeHandler(component, router, setContext);
         router.get(path, handler);
         acc[path] = {
           path,
@@ -53,9 +59,7 @@ function Router({ children: childrenProp, routes: _routes = {} }) {
       const notFoundPath = '*';
       const notFoundComponent = _routes[notFoundPath] || notFound;
       const notFoundHandler = makeHandler(
-        notFoundPath,
         notFoundComponent,
-        setChildren,
         router,
         setContext
       );
@@ -64,7 +68,7 @@ function Router({ children: childrenProp, routes: _routes = {} }) {
         handler: notFoundHandler,
       };
       router.get(notFoundPath, notFoundHandler);
-      setRoutes(newRoutes);
+      routesRef.current = newRoutes;
 
       const { pathname, search, hash } = new URL(window.location);
       router.navigate(pathname + search + hash, 'replace');
@@ -74,8 +78,8 @@ function Router({ children: childrenProp, routes: _routes = {} }) {
   }, [_routes]);
 
   return (
-    <RouterContext.Provider value={context}>
-      {childrenProp(children)}
+    <RouterContext.Provider value={context.symbol}>
+      {childrenProp(context.children)}
     </RouterContext.Provider>
   );
 }

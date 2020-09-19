@@ -4,11 +4,12 @@ import useRouter from './modules/Router/useRouter';
 import { saveItem } from './modules/storage';
 import { encrypt } from './modules/encryption';
 import generateId from './modules/id';
+import { ADD } from './modules/state';
 
 import './Create.css';
 import './Form.css';
 
-async function handleSubmit(setSubmitting, router, evt) {
+async function handleSubmit(setSubmitting, dispatch, router, evt) {
   evt.preventDefault();
   setSubmitting(true);
 
@@ -22,10 +23,11 @@ async function handleSubmit(setSubmitting, router, evt) {
   item.content = await encrypt(item.content);
 
   saveItem(item);
+  dispatch({ type: ADD, payload: { id: item.id, title: item.title } });
   router.navigate(`/view/${item.id}`);
 }
 
-function Create() {
+function Create({ dispatch }) {
   const [submitting, setSubmitting] = React.useState(false);
   const router = useRouter();
 
@@ -34,7 +36,7 @@ function Create() {
       <form
         id="create-form"
         className="Form"
-        onSubmit={handleSubmit.bind(null, setSubmitting, router)}
+        onSubmit={handleSubmit.bind(null, setSubmitting, dispatch, router)}
       >
         <fieldset className="Form-fieldset">
           <label className="Form-label" htmlFor="title-input">

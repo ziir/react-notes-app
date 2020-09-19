@@ -1,42 +1,10 @@
 import React from 'react';
 import Link from './modules/Router/Link';
-import { getAllItems } from './modules/storage';
 import ListItem from './ListItem';
 
 import './List.css';
 
-function retrieveItems() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const items = getAllItems();
-      resolve(items);
-    }, 500);
-  });
-}
-
-function List() {
-  const [items, setItems] = React.useState([]);
-  const [error, setError] = React.useState(null);
-  const [loading, setLoading] = React.useState(null);
-
-  React.useEffect(() => {
-    async function retrieveItemsOnMount() {
-      setLoading(true);
-      try {
-        const items = await retrieveItems();
-        if (items && items.length) {
-          setItems(items);
-        }
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    retrieveItemsOnMount();
-  }, []);
-
+function List({ items, loading, error }) {
   if (loading === null) {
     return null;
   }
@@ -55,7 +23,7 @@ function List() {
     );
   }
 
-  if (!items.length) {
+  if (!items || !items.length) {
     return (
       <p>
         No items, yet.
