@@ -5,9 +5,10 @@ import Header from './Header';
 import List from './List';
 import Create from './Create';
 import Viewer from './Viewer';
+import Edit from './Edit';
 
 import { initalState, reducer, LOADING, SET, ERROR } from './modules/state';
-import { retrieveItems } from './modules/items';
+import { retrieveItems } from './modules/items/retrieve';
 
 import './App.css';
 
@@ -15,6 +16,7 @@ const routes = {
   '/': null,
   '/new': Create,
   '/view/:id': Viewer,
+  '/edit/:id': Edit,
 };
 
 function App() {
@@ -38,14 +40,18 @@ function App() {
   return (
     <div className="App">
       <Router routes={routes}>
-        {({ children: Route, component, location }) => {
+        {({ children: Route, component, match }) => {
           let routeProps = { dispatch };
-          if (component === Viewer) {
-            routeProps = {
-              ...routeProps,
-              key: location.params.id,
-              items: state.items,
-            };
+
+          // eslint-disable-next-line default-case
+          switch (component) {
+            case Viewer:
+            case Edit:
+              routeProps = {
+                ...routeProps,
+                key: match.params.id,
+                items: state.items,
+              };
           }
 
           return (

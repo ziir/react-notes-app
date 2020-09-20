@@ -1,14 +1,12 @@
 import React from 'react';
 import RouterContext from './RouterContext';
 
-function getReplace(to) {
-  const { pathname, search, hash } = new URL(window.location);
+function getReplace(to, location) {
+  const { pathname, search, hash } = new URL(location);
   return (pathname || '/') + (search || '') + (hash || '') === to;
 }
 
-export function Link({ to, className, replace: replaceProp, ...extra }) {
-  const replace = replaceProp !== undefined ? replaceProp : getReplace(to);
-
+export function Link({ to, className, replace, ...extra }) {
   return (
     // eslint-disable-next-line jsx-a11y/anchor-has-content
     <a
@@ -21,9 +19,21 @@ export function Link({ to, className, replace: replaceProp, ...extra }) {
   );
 }
 
-function ContextLink(props) {
+function ContextLink({ to, replace: replaceProp, ...extra }) {
   return (
-    <RouterContext.Consumer>{() => <Link {...props} />}</RouterContext.Consumer>
+    <RouterContext.Consumer>
+      {({ location }) => (
+        <Link
+          to={to}
+          replace={
+            replaceProp !== undefined
+              ? replaceProp
+              : location && getReplace(to, location)
+          }
+          {...extra}
+        />
+      )}
+    </RouterContext.Consumer>
   );
 }
 

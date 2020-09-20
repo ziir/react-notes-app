@@ -1,3 +1,9 @@
+.Viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .Viewer-title {
   margin-top: 0;
   margin-bottom: var(--spacing-small);
@@ -19,6 +25,22 @@
 .Viewer-status p {
   margin: 0;
   margin-bottom: var(--spacing-small);
+}
+
+.Viewer-inner {
+  overflow: auto;
+  margin-bottom: var(--spacing);
+  flex-grow: 1;
+}
+
+.Viewer-edit-link {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-small);
+
+  background-color: var(--color-blue);
+  color: var(--color-gray-dark);
+  text-decoration: none;
 }
 
 .Viewer-content.markdown-container {

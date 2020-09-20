@@ -1,4 +1,5 @@
 .Form {
+  flex-grow: 1;
 }
 
 .Form-fieldset {

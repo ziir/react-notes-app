@@ -9,15 +9,15 @@ function notFound() {
 }
 
 function makeHandler(route, Component, router, setContext) {
-  return function handler_(location) {
+  return function handler_(match) {
     setContext({
       route,
-      location,
+      location: window.location,
+      match,
       component: Component,
-      symbol: Symbol(),
       children: Component
         ? function Route(props) {
-            return <Component router={router} location={location} {...props} />;
+            return <Component router={router} match={match} {...props} />;
           }
         : null,
     });
@@ -33,9 +33,9 @@ export function Router({
   const routesRef = React.useRef(null);
   const [context, setContext] = React.useState({
     route: null,
-    symbol: null,
     children: null,
     location: null,
+    match: null,
     component: null,
   });
 
@@ -84,7 +84,7 @@ export function Router({
   }, [_routes]);
 
   return (
-    <RouterContext.Provider value={context.symbol}>
+    <RouterContext.Provider value={context}>
       {childrenProp(context)}
     </RouterContext.Provider>
   );

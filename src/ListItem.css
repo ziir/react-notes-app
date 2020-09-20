@@ -18,15 +18,15 @@
   outline: none;
 }
 
-.ListItem-link[replace] {
+.ListItem-link.ListItem-link-active {
   background-color: var(--color-gray-dark);
   color: white;
 }
 
-.ListItem-link[replace]:hover {
+.ListItem-.ListItem-link-active:hover {
   color: var(--color-blue);
 }
 
-.ListItem-link[replace]:focus {
+.ListItem-.ListItem-link-active:focus {
   box-shadow: inset 0 0 0 var(--spacing-xsmall) rgba(255, 255, 255, 0.3);
 }

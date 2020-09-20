@@ -1,4 +1,4 @@
-import { getAllItems } from './storage';
+import { getAllItems } from '../storage';
 
 export function retrieveItems() {
   return new Promise((resolve, reject) => {
