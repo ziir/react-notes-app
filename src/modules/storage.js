@@ -20,7 +20,26 @@ export function getItemContent(id) {
 }
 
 export function deleteItem(id) {
-  return window.localStorage.removeItem(`${namespace}.${id}`);
+  const items = getAllItems();
+  let storable = items.reduce((acc, item) => {
+    if (item.id !== id) {
+      acc[item.id] = item.title;
+    }
+    return acc;
+  }, {});
+  window.localStorage.setItem(`${namespace}.all`, JSON.stringify(storable));
+  try {
+    window.localStorage.removeItem(`${namespace}.${id}`);
+  } catch (err) {
+    storable = items.reduce((acc, item) => {
+      if (item.id !== id) {
+        acc[item.id] = item.title;
+      }
+      return acc;
+    }, {});
+    window.localStorage.setItem(`${namespace}.all`, JSON.stringify(storable));
+    throw err;
+  }
 }
 
 export function saveItem({ id, title, content }) {

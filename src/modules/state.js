@@ -6,6 +6,7 @@ export const initalState = {
 
 export const ADD = 'add';
 export const UPDATE = 'update';
+export const DELETE = 'delete';
 export const SET = 'set';
 export const ERROR = 'error';
 export const LOADING = 'loading';
@@ -18,7 +19,7 @@ export function reducer(state, action) {
     case SET:
       return { error: null, loading: false, items: action.payload };
 
-    case UPDATE:
+    case UPDATE: {
       const itemIdx = state.items.findIndex(
         ({ id, title }) =>
           action.payload.id === id && action.payload.title !== title
@@ -29,6 +30,17 @@ export function reducer(state, action) {
 
       newItems[itemIdx] = action.payload;
       return { ...state, items: newItems };
+    }
+
+    case DELETE: {
+      const itemIdx = state.items.findIndex(({ id }) => action.payload === id);
+      if (itemIdx < 0) return state;
+
+      const newItems = [...state.items];
+      newItems.splice(itemIdx, 1);
+
+      return { ...state, items: newItems };
+    }
 
     case ERROR:
       return { ...state, error: action.payload };

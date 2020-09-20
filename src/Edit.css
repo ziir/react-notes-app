@@ -25,9 +25,22 @@
   flex-grow: 1;
 }
 
+.Edit-actions {
+  display: flex;
+}
+
 .Edit-button {
   width: 100%;
   padding: var(--spacing-small);
   background-color: var(--color-blue);
   border: none;
+}
+
+.Edit-button.Edit-delete-button {
+  background-color: var(--color-gray-dark);
+  color: white;
+}
+
+.Edit-actions button + button {
+  margin-left: var(--spacing);
 }

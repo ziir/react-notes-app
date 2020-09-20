@@ -2,10 +2,10 @@ import React from 'react';
 
 import Loader from './Loader';
 import useRouter from './modules/Router/useRouter';
-import { saveItem } from './modules/storage';
+import { saveItem, deleteItem } from './modules/storage';
 import { encrypt } from './modules/encryption';
 import useItem from './modules/items/useItem';
-import { UPDATE } from './modules/state';
+import { UPDATE, DELETE } from './modules/state';
 
 import Form from './Form';
 
@@ -27,6 +27,14 @@ function Edit({
     saveItem({ id, ...updated });
     dispatch({ type: UPDATE, payload: { id, title: updated.title } });
     router.navigate(`/view/${id}`);
+  }
+
+  function handleDeleteClick(evt) {
+    evt.preventDefault();
+
+    deleteItem(id);
+    dispatch({ type: DELETE, payload: id });
+    router.navigate('/');
   }
 
   if (status === 'not-found') {
@@ -54,14 +62,24 @@ function Edit({
       <div className="Edit">
         <Form {...item} formId="edit-form" onSubmit={handleSubmit}>
           {({ submitting }) => (
-            <button
-              type="submit"
-              form="edit-form"
-              className="Edit-button"
-              disabled={submitting}
-            >
-              Update
-            </button>
+            <div className="Edit-actions">
+              <button
+                type="submit"
+                form="edit-form"
+                className="Edit-button"
+                disabled={submitting}
+              >
+                Update
+              </button>
+              <button
+                type="button"
+                className="Edit-button Edit-delete-button"
+                disabled={submitting}
+                onClick={handleDeleteClick}
+              >
+                Delete
+              </button>
+            </div>
           )}
         </Form>
       </div>
