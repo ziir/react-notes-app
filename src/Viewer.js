@@ -1,6 +1,9 @@
 import React from 'react';
+import Loader from './Loader';
 import { getItemContent } from './modules/storage';
 import { decrypt } from './modules/encryption';
+
+import './Viewer.css';
 
 function Viewer({
   location: {
@@ -57,7 +60,11 @@ function Viewer({
   }
 
   if (status === 'loading') {
-    return <p>Loading...</p>;
+    return (
+      <p className="Viewer-status">
+        <Loader className="Viewer-loader" />
+      </p>
+    );
   }
 
   if (status === 'storage-error') {

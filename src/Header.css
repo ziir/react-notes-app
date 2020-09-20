@@ -25,6 +25,8 @@
 .Header h1 a {
   display: inline-flex;
   align-items: center;
+  padding: var(--spacing-small);
+  padding-left: 0;
 
   text-decoration: none;
   color: inherit;
@@ -35,7 +37,8 @@
 }
 
 .Header h1 a:focus {
-  outline: var(--spacing-xsmall) solid var(--color-blue);
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) var(--color-blue);
+  outline: none;
 }
 
 .Header-cta {
@@ -48,7 +51,8 @@
 }
 
 .Header-cta:focus {
-  outline: var(--spacing-xsmall) solid white;
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) white;
+  outline: none;
 }
 
 .Header-cta:hover {
@@ -56,12 +60,12 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .Header-logo:hover {
-    animation: App-logo-spin infinite 20s linear;
+  .Header h1 a:hover:not(:focus) .Header-logo {
+    animation: spin infinite 20s linear;
   }
 }
 
-@keyframes App-logo-spin {
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }

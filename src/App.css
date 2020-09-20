@@ -15,7 +15,11 @@
 .App-main section {
   overflow: auto;
   flex-grow: 1;
-  padding: var(--spacing-xsmall);
+  padding: var(--spacing-small);
   width: 100%;
-  border: 1px solid red;
+  background-color: var(--color-gray-light);
+}
+
+.App-main section + section {
+  margin-left: var(--spacing);
 }

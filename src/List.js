@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from './modules/Router/Link';
 import ListItem from './ListItem';
+import Loader from './Loader';
 
 import './List.css';
 
@@ -10,12 +11,16 @@ function List({ items, loading, error }) {
   }
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <p className="List-status">
+        <Loader className="List-loader" />
+      </p>
+    );
   }
 
   if (error) {
     return (
-      <p>
+      <p className="List-status">
         Unable to retrieve items right now.
         <br />
         {error.toString()}
@@ -25,7 +30,7 @@ function List({ items, loading, error }) {
 
   if (!items || !items.length) {
     return (
-      <p>
+      <p className="List-status">
         No items, yet.
         <br />
         <Link to="/new">Create a new item.</Link>
