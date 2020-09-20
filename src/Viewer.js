@@ -1,4 +1,5 @@
 import React from 'react';
+import snarkdown from 'snarkdown';
 import Loader from './Loader';
 import { getItemContent } from './modules/storage';
 import { decrypt } from './modules/encryption';
@@ -48,6 +49,13 @@ function Viewer({
         return setState({ status: 'decryption-error', item: null });
       }
 
+      try {
+        content = snarkdown(content);
+      } catch (err) {
+        console.error(err);
+        return setState({ status: 'parsing-error', item: null });
+      }
+
       setState({ status: 'ready', item: { ...match, content } });
     }
 
@@ -56,7 +64,7 @@ function Viewer({
   }, [items]);
 
   if (status === 'not-found') {
-    return <p>Item not found.</p>;
+    return <p className="Viewer-status">Item not found.</p>;
   }
 
   if (status === 'loading') {
@@ -68,18 +76,27 @@ function Viewer({
   }
 
   if (status === 'storage-error') {
-    return <p>Unable to retrieve item from storage.</p>;
+    return (
+      <p className="Viewer-status">Unable to retrieve item from storage.</p>
+    );
   }
 
   if (status === 'decryption-error') {
-    return <p>Unable to decrypt item content.</p>;
+    return <p className="Viewer-status">Unable to decrypt item content.</p>;
+  }
+
+  if (status === 'parsing-error') {
+    return <p className="Viewer-status">Unable to parse item content.</p>;
   }
 
   if (status === 'ready' && item) {
     return (
-      <article>
-        <h2>{item.title}</h2>
-        <p>{item.content}</p>
+      <article className="Viewer">
+        <h2 className="Viewer-title">{item.title}</h2>
+        <div
+          className="Viewer-content markdown-container"
+          dangerouslySetInnerHTML={{ __html: item.content }}
+        />
       </article>
     );
   }

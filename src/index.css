@@ -30,26 +30,3 @@ body {
 #root {
   height: 100%;
 }
-
-p {
-  margin: 0;
-  margin-bottom: var(--spacing-small);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  margin-bottom: var(--spacing-small);
-}
-
-h1 {
-  font-size: 1.6rem;
-}
-
-h2 {
-  font-size: 1.2rem;
-}

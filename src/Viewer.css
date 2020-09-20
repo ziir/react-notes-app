@@ -1,3 +1,9 @@
+.Viewer-title {
+  margin-top: 0;
+  margin-bottom: var(--spacing-small);
+  font-size: 1.2rem;
+}
+
 .Viewer-status {
   display: flex;
   flex-direction: column;
@@ -8,4 +14,17 @@
 
 .Viewer-loader {
   width: 10rem;
+}
+
+.Viewer-status p {
+  margin: 0;
+  margin-bottom: var(--spacing-small);
+}
+
+.Viewer-content.markdown-container {
+  overflow: hidden;
+}
+
+.Viewer-content.markdown-container pre {
+  overflow: auto;
 }
