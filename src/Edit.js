@@ -2,7 +2,6 @@ import React from 'react';
 
 import Loader from './Loader';
 import useRouter from './modules/Router/useRouter';
-import { Link } from './modules/Router/Link';
 import { saveItem, deleteItem } from './modules/storage';
 import { encrypt } from './modules/encryption';
 import useItem from './modules/items/useItem';
@@ -64,13 +63,6 @@ function Edit({
         <Form {...item} formId="edit-form" onSubmit={handleSubmit}>
           {({ submitting }) => (
             <div className="Edit-actions">
-              <Link
-                className="Edit-cancel-link"
-                disabled={submitting}
-                to={`/view/${id}`}
-              >
-                Cancel
-              </Link>
               <button
                 type="submit"
                 form="edit-form"

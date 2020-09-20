@@ -9,7 +9,6 @@
 }
 
 .Create-button {
-  width: 100%;
   padding: var(--spacing-small);
   background-color: var(--color-blue);
   border: none;

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link } from './modules/Router/Link';
 import './Form.css';
 
 async function handleSubmit(setSubmitting, setError, onSubmit, evt) {
@@ -22,7 +23,8 @@ async function handleSubmit(setSubmitting, setError, onSubmit, evt) {
 }
 
 function Form({
-  formId: id,
+  id = null,
+  formId,
   title = '',
   content = '',
   onSubmit,
@@ -35,7 +37,7 @@ function Form({
     <>
       {error && <p className="Form-Error">{error.toString()}</p>}
       <form
-        id={id}
+        id={formId}
         className="Form"
         onSubmit={handleSubmit.bind(null, setSubmitting, setError, onSubmit)}
       >
@@ -70,7 +72,16 @@ function Form({
           ></textarea>
         </fieldset>
       </form>
-      {typeof renderAdjacent === 'function' && renderAdjacent({ submitting })}
+      <div className="Form-actions">
+        <Link
+          className="Form-cancel-link"
+          disabled={submitting}
+          to={id ? `/view/${id}` : '/'}
+        >
+          Cancel
+        </Link>
+        {typeof renderAdjacent === 'function' && renderAdjacent({ submitting })}
+      </div>
     </>
   );
 }

@@ -27,6 +27,7 @@
 
 .Edit-actions {
   display: flex;
+  justify-content: flex-end;
 }
 
 .Edit-button {
@@ -42,20 +43,4 @@
 
 .Edit-actions > * + * {
   margin-left: var(--spacing);
-}
-
-.Edit-actions > * {
-  flex-grow: 1;
-  font-size: 1rem;
-  line-height: 1rem;
-}
-
-.Edit-cancel-link {
-  display: flex;
-  justify-content: center;
-  padding: var(--spacing-small);
-
-  background-color: white;
-  color: var(--color-gray-dark);
-  text-decoration: none;
 }
