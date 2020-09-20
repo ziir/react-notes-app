@@ -23,3 +23,23 @@
 .App-main section + section {
   margin-left: var(--spacing);
 }
+
+@media screen and (max-width: 768px) {
+  .App-main {
+    display: block;
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  .App-main section {
+    max-height: 50%;
+    flex-grow: 0;
+    justify-content: none;
+  }
+
+  .App-main section + section {
+    max-height: initial;
+    margin-left: 0;
+    margin-top: var(--spacing);
+  }
+}
