@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../modules/UI/Button';
 import Link from '../modules/Router/Link';
 import RouterContext from '../modules/Router/RouterContext';
 
@@ -14,9 +15,9 @@ function ListItem({ id, title }) {
             .filter(Boolean)
             .join(' ');
           return (
-            <Link to={`/view/${id}`} className={className}>
+            <Button as={Link} to={`/view/${id}`} className={className}>
               {title}
-            </Link>
+            </Button>
           );
         }}
       </RouterContext.Consumer>

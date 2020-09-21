@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from '../modules/Router/Link';
+import Button from '../modules/UI/Button';
 import './Form.css';
 
 async function handleSubmit(setSubmitting, setError, onSubmit, evt) {
@@ -73,13 +74,14 @@ function Form({
         </fieldset>
       </form>
       <div className="Form-actions">
-        <Link
-          className="Form-cancel-link"
+        <Button
+          as={Link}
           disabled={submitting}
+          className="Form-cancel-link"
           to={id ? `/view/${id}` : '/'}
         >
           Cancel
-        </Link>
+        </Button>
         {typeof renderAdjacent === 'function' && renderAdjacent({ submitting })}
       </div>
     </>

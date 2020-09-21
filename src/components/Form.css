@@ -36,11 +36,12 @@
 }
 
 .Form-cancel-link {
-  display: flex;
-  justify-content: center;
-  padding: var(--spacing-small);
-
   background-color: white;
-  color: var(--color-gray-dark);
-  text-decoration: none;
+}
+
+.Form-cancel-link:hover,
+.Form-cancel-link:focus {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) rgba(0, 0, 0, 0.1);
+  outline: none;
+  filter: none;
 }

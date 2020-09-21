@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Button from '../modules/UI/Button';
 import Loader from '../modules/UI/Loader';
 import StatusAlert from '../modules/UI/StatusAlert';
 
@@ -65,22 +66,17 @@ function Edit({
         <Form {...item} formId="edit-form" onSubmit={handleSubmit}>
           {({ submitting }) => (
             <div className="Edit-actions">
-              <button
-                type="submit"
-                form="edit-form"
-                className="Edit-button"
-                disabled={submitting}
-              >
+              <Button type="submit" form="edit-form" disabled={submitting}>
                 Update
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className="Edit-button Edit-delete-button"
+                className="Edit-delete-button"
                 disabled={submitting}
                 onClick={handleDeleteClick}
               >
                 Delete
-              </button>
+              </Button>
             </div>
           )}
         </Form>

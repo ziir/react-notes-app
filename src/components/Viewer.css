@@ -21,13 +21,7 @@
 }
 
 .Viewer-edit-link {
-  display: flex;
-  justify-content: center;
-  padding: var(--spacing-small);
-
   background-color: var(--color-blue);
-  color: var(--color-gray-dark);
-  text-decoration: none;
 }
 
 .Viewer-content.markdown-container {

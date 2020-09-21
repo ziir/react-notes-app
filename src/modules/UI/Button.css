@@ -1,0 +1,19 @@
+.Button {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-small);
+  line-height: 1rem;
+  background-color: var(--color-blue);
+  color: var(--color-gray-dark);
+  border: none;
+  text-decoration: none;
+}
+
+.Button:hover {
+  filter: contrast(175%);
+}
+
+.Button:focus {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) white;
+  outline: none;
+}

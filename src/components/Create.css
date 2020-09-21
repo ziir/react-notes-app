@@ -3,13 +3,3 @@
   flex-direction: column;
   height: 100%;
 }
-
-#create-form {
-  flex-grow: 1;
-}
-
-.Create-button {
-  padding: var(--spacing-small);
-  background-color: var(--color-blue);
-  border: none;
-}

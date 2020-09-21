@@ -1,16 +1,11 @@
-.ListItem {
-}
-
 .ListItem-link {
-  display: flex;
-  padding: var(--spacing-small);
-  line-height: 1rem;
-  color: var(--color-gray-dark);
-  text-decoration: none;
+  justify-content: flex-start;
+  background-color: transparent;
 }
 
 .ListItem-link:hover {
   background-color: var(--color-blue);
+  filter: none;
 }
 
 .ListItem-link:focus {
@@ -23,10 +18,10 @@
   color: white;
 }
 
-.ListItem-.ListItem-link-active:hover {
+.ListItem-link.ListItem-link-active:hover {
   color: var(--color-blue);
 }
 
-.ListItem-.ListItem-link-active:focus {
+.ListItem-link.ListItem-link-active:focus {
   box-shadow: inset 0 0 0 var(--spacing-xsmall) rgba(255, 255, 255, 0.3);
 }

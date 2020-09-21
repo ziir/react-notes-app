@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Button from '../modules/UI/Button';
 import useRouter from '../modules/Router/useRouter';
 import { saveItem } from '../modules/storage';
 import { encrypt } from '../modules/encryption';
@@ -26,14 +27,9 @@ function Create({ dispatch }) {
     <div className="Create">
       <Form formId="create-form" onSubmit={handleSubmit}>
         {({ submitting }) => (
-          <button
-            type="submit"
-            form="create-form"
-            className="Create-button"
-            disabled={submitting}
-          >
+          <Button type="submit" form="create-form" disabled={submitting}>
             Create
-          </button>
+          </Button>
         )}
       </Form>
     </div>

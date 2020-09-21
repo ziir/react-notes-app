@@ -1,7 +1,8 @@
 import React from 'react';
+import Button from '../modules/UI/Button';
 import Loader from '../modules/UI/Loader';
 import StatusAlert from '../modules/UI/StatusAlert';
-import Link from '../modules/Router/Link';
+import { Link } from '../modules/Router/Link';
 import useItem from '../modules/items/useItem';
 
 import './Viewer.css';
@@ -49,9 +50,9 @@ function Viewer({
             dangerouslySetInnerHTML={{ __html: item.content }}
           />
         </article>
-        <Link className="Viewer-edit-link" to={`/edit/${item.id}`}>
+        <Button as={Link} className="Viewer-edit-link" to={`/edit/${item.id}`}>
           Edit
-        </Link>
+        </Button>
       </div>
     );
   }

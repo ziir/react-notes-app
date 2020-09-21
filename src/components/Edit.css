@@ -8,24 +8,18 @@
   width: 10rem;
 }
 
-#edit-form {
-  flex-grow: 1;
-}
-
 .Edit-actions {
   display: flex;
   justify-content: flex-end;
 }
 
-.Edit-button {
-  padding: var(--spacing-small);
-  background-color: var(--color-blue);
-  border: none;
-}
-
-.Edit-button.Edit-delete-button {
+.Edit-delete-button {
   background-color: var(--color-gray-dark);
   color: white;
+}
+
+.Edit-delete-button:focus {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) rgba(255, 255, 255, 0.3);
 }
 
 .Edit-actions > * + * {

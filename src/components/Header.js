@@ -1,6 +1,7 @@
 import React from 'react';
-import Link from '../modules/Router/Link';
+import Button from '../modules/UI/Button';
 import logo from '../modules/UI/logo.svg';
+import Link from '../modules/Router/Link';
 import './Header.css';
 
 function Header() {
@@ -12,9 +13,9 @@ function Header() {
           My App
         </Link>
       </h1>
-      <Link className="Header-cta" to="/new">
+      <Button as={Link} to="/new">
         New Thing
-      </Link>
+      </Button>
     </header>
   );
 }
