@@ -6,6 +6,7 @@ import List from './List';
 import Create from './Create';
 import Viewer from './Viewer';
 import Edit from './Edit';
+import NotFound from './NotFound';
 
 import { initalState, reducer, LOADING, SET, ERROR } from '../modules/state';
 import { retrieveItems } from '../modules/items/retrieve';
@@ -17,6 +18,7 @@ const routes = {
   '/view/:id': Viewer,
   '/edit/:id': { component: Edit, locked: true },
   '/new': { component: Create, locked: true },
+  '*': NotFound,
 };
 
 function App() {
@@ -42,7 +44,6 @@ function App() {
       <Router routes={routes}>
         {({ children: Route, component, match }) => {
           let routeProps = { dispatch };
-
           // eslint-disable-next-line default-case
           switch (component) {
             case Viewer:
@@ -58,13 +59,19 @@ function App() {
             <>
               <Header />
               <main className="App-main">
-                <section>
-                  <List {...state} />
-                </section>
-                {Route && (
-                  <section>
-                    <Route {...routeProps} />
-                  </section>
+                {Route && component === NotFound ? (
+                  <Route />
+                ) : (
+                  <>
+                    <section>
+                      <List {...state} />
+                    </section>
+                    {Route && (
+                      <section>
+                        <Route {...routeProps} />
+                      </section>
+                    )}
+                  </>
                 )}
               </main>
             </>

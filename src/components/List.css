@@ -5,5 +5,9 @@
 }
 
 .List-loader {
+  height: 100%;
+}
+
+.List-loader img {
   width: 10rem;
 }

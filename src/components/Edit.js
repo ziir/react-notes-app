@@ -46,8 +46,8 @@ function Edit({
 
   if (status === 'loading') {
     return (
-      <StatusAlert>
-        <Loader className="Edit-loader" />
+      <StatusAlert className="Edit-loader">
+        <Loader />
       </StatusAlert>
     );
   }

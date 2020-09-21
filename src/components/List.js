@@ -13,8 +13,8 @@ function List({ items, loading, error }) {
 
   if (loading) {
     return (
-      <StatusAlert>
-        <Loader className="List-loader" />
+      <StatusAlert className="List-loader">
+        <Loader />
       </StatusAlert>
     );
   }

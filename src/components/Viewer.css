@@ -11,6 +11,10 @@
 }
 
 .Viewer-loader {
+  height: 100%;
+}
+
+.Viewer-loader > img {
   width: 10rem;
 }
 

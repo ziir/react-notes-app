@@ -5,6 +5,10 @@
 }
 
 .Edit-loader {
+  height: 100%;
+}
+
+.Edit-loader > img {
   width: 10rem;
 }
 

@@ -22,8 +22,8 @@ function Viewer({
 
   if (status === 'loading') {
     return (
-      <StatusAlert>
-        <Loader className="Viewer-loader" />
+      <StatusAlert className="Viewer-loader">
+        <Loader />
       </StatusAlert>
     );
   }
