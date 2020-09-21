@@ -1,5 +1,6 @@
 import React from 'react';
 import Loader from '../modules/UI/Loader';
+import StatusAlert from '../modules/UI/StatusAlert';
 import Link from '../modules/Router/Link';
 import useItem from '../modules/items/useItem';
 
@@ -15,29 +16,27 @@ function Viewer({
   const { status, item } = useItem(items, id, true);
 
   if (status === 'not-found') {
-    return <p className="Viewer-status">Item not found.</p>;
+    return <StatusAlert>Item not found.</StatusAlert>;
   }
 
   if (status === 'loading') {
     return (
-      <p className="Viewer-status">
+      <StatusAlert>
         <Loader className="Viewer-loader" />
-      </p>
+      </StatusAlert>
     );
   }
 
   if (status === 'storage-error') {
-    return (
-      <p className="Viewer-status">Unable to retrieve item from storage.</p>
-    );
+    return <StatusAlert>Unable to retrieve item from storage.</StatusAlert>;
   }
 
   if (status === 'decryption-error') {
-    return <p className="Viewer-status">Unable to decrypt item content.</p>;
+    return <StatusAlert>Unable to decrypt item content.</StatusAlert>;
   }
 
   if (status === 'parsing-error') {
-    return <p className="Viewer-status">Unable to parse item content.</p>;
+    return <StatusAlert>Unable to parse item content.</StatusAlert>;
   }
 
   if (status === 'ready' && item) {

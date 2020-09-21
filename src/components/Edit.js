@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Loader from '../modules/UI/Loader';
+import StatusAlert from '../modules/UI/StatusAlert';
+
 import useRouter from '../modules/Router/useRouter';
 import { saveItem, deleteItem } from '../modules/storage';
 import { encrypt } from '../modules/encryption';
@@ -38,23 +40,23 @@ function Edit({
   }
 
   if (status === 'not-found') {
-    return <p className="Edit-status">Item not found.</p>;
+    return <StatusAlert>Item not found.</StatusAlert>;
   }
 
   if (status === 'loading') {
     return (
-      <p className="Edit-status">
+      <StatusAlert>
         <Loader className="Edit-loader" />
-      </p>
+      </StatusAlert>
     );
   }
 
   if (status === 'storage-error') {
-    return <p className="Edit-status">Unable to retrieve item from storage.</p>;
+    return <StatusAlert>Unable to retrieve item from storage.</StatusAlert>;
   }
 
   if (status === 'decryption-error') {
-    return <p className="Edit-status">Unable to decrypt item content.</p>;
+    return <StatusAlert>Unable to decrypt item content.</StatusAlert>;
   }
 
   if (status === 'ready' && item) {

@@ -4,21 +4,8 @@
   height: 100%;
 }
 
-.Edit-status {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
 .Edit-loader {
   width: 10rem;
-}
-
-.Edit-status p {
-  margin: 0;
-  margin-bottom: var(--spacing-small);
 }
 
 #edit-form {

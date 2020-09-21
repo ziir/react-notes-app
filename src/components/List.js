@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '../modules/Router/Link';
 import Loader from '../modules/UI/Loader';
+import StatusAlert from '../modules/UI/StatusAlert';
 import ListItem from './ListItem';
 
 import './List.css';
@@ -12,29 +13,29 @@ function List({ items, loading, error }) {
 
   if (loading) {
     return (
-      <p className="List-status">
+      <StatusAlert>
         <Loader className="List-loader" />
-      </p>
+      </StatusAlert>
     );
   }
 
   if (error) {
     return (
-      <p className="List-status">
+      <StatusAlert>
         Unable to retrieve items right now.
         <br />
         {error.toString()}
-      </p>
+      </StatusAlert>
     );
   }
 
   if (!items || !items.length) {
     return (
-      <p className="List-status">
+      <StatusAlert>
         No items, yet.
         <br />
         <Link to="/new">Create a new item.</Link>
-      </p>
+      </StatusAlert>
     );
   }
 
