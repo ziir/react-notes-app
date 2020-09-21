@@ -22,7 +22,7 @@ function List({ items, loading, error }) {
   if (error) {
     return (
       <StatusAlert>
-        Unable to retrieve items right now.
+        Unable to retrieve notes right now.
         <br />
         {error.toString()}
       </StatusAlert>
@@ -32,9 +32,9 @@ function List({ items, loading, error }) {
   if (!items || !items.length) {
     return (
       <StatusAlert>
-        No items, yet.
+        No notes, yet.
         <br />
-        <Link to="/new">Create a new item.</Link>
+        <Link to="/new">Create a new note.</Link>
       </StatusAlert>
     );
   }

@@ -21,7 +21,7 @@ function Viewer({
   const { status, item } = useItem(items, id, true);
 
   if (status === 'not-found') {
-    return <StatusAlert>Item not found.</StatusAlert>;
+    return <StatusAlert>Note not found.</StatusAlert>;
   }
 
   if (status === 'loading') {
@@ -33,15 +33,15 @@ function Viewer({
   }
 
   if (status === 'storage-error') {
-    return <StatusAlert>Unable to retrieve item from storage.</StatusAlert>;
+    return <StatusAlert>Unable to retrieve note from storage.</StatusAlert>;
   }
 
   if (status === 'decryption-error') {
-    return <StatusAlert>Unable to decrypt item content.</StatusAlert>;
+    return <StatusAlert>Unable to decrypt note content.</StatusAlert>;
   }
 
   if (status === 'parsing-error') {
-    return <StatusAlert>Unable to parse item content.</StatusAlert>;
+    return <StatusAlert>Unable to parse note content.</StatusAlert>;
   }
 
   if (status === 'ready' && item) {

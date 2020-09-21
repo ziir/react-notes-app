@@ -67,9 +67,7 @@ function App() {
       <Router routes={routes}>
         {/* Router's render prop is invoked with the router context object. */}
         {({ children: Route, component, match }) => {
-          {
-            /* Add route-specific props */
-          }
+          /* Add route-specific props */
           let routeProps = { dispatch };
           // eslint-disable-next-line default-case
           switch (component) {

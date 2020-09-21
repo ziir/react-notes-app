@@ -10,11 +10,11 @@ function Header() {
       <h1>
         <Link to="/">
           <img src={logo} className="Header-logo" alt="" />
-          My App
+          React Notes App
         </Link>
       </h1>
       <Button as={Link} to="/new">
-        New Thing
+        New Note
       </Button>
     </header>
   );
