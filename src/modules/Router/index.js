@@ -8,12 +8,13 @@ function notFound() {
   return '404 Not Found';
 }
 
-function makeHandler(route, Component, router, setContext) {
+function makeHandler(route, Component, locked, router, setContext) {
   return function handler_(match) {
     setContext({
       route,
       location: window.location,
       match,
+      locked,
       component: Component,
       children: Component
         ? function Route(props) {
@@ -37,6 +38,7 @@ export function Router({
     location: null,
     match: null,
     component: null,
+    locked: null,
   });
 
   React.useEffect(() => {
@@ -51,11 +53,20 @@ export function Router({
     const paths = Object.keys(_routes).filter((path) => path !== '*');
     if (paths.length) {
       const newRoutes = paths.reduce((acc, path) => {
-        const component = _routes[path];
-        const handler = makeHandler(path, component, router, setContext);
+        const definition = _routes[path];
+        const extended = definition && typeof definition === 'object';
+        const component = extended ? definition.component : definition;
+        const locked = extended ? !!definition.locked : false;
+        const handler = makeHandler(
+          path,
+          component,
+          locked,
+          router,
+          setContext
+        );
         router.get(path, handler);
         acc[path] = {
-          component,
+          definition,
           handler,
         };
         return acc;
@@ -66,11 +77,12 @@ export function Router({
       const notFoundHandler = makeHandler(
         notFoundPath,
         notFoundComponent,
+        false,
         router,
         setContext
       );
       newRoutes[notFoundPath] = {
-        component: notFoundComponent,
+        definition: notFoundComponent,
         handler: notFoundHandler,
       };
       router.get(notFoundPath, notFoundHandler);

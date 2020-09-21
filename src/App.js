@@ -14,9 +14,9 @@ import './App.css';
 
 const routes = {
   '/': null,
-  '/new': Create,
   '/view/:id': Viewer,
-  '/edit/:id': Edit,
+  '/edit/:id': { component: Edit, locked: true },
+  '/new': { component: Create, locked: true },
 };
 
 function App() {
