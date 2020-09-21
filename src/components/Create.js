@@ -14,11 +14,17 @@ import './Create.css';
 function Create({ dispatch }) {
   const router = useRouter();
 
+  // Assuming encryption cannot fail.
+  // May be necessary to either:
+  // - manage local error state + message
+  // - dispatch({ type: ERROR }) for a ~global error state handling
   async function handleSubmit(item) {
     item.id = generateId();
     item.content = await encrypt(item.content);
 
+    // Save encrypted item to local storage.
     saveItem(item);
+    // Add minimal item to items list ~global state.
     dispatch({ type: ADD, payload: { id: item.id, title: item.title } });
     router.navigate(`/view/${item.id}`);
   }

@@ -1,10 +1,14 @@
 const namespace = 'items';
 
 /*
- * items.all : { [id]: title, ... }
- * items.${id} : content
+ * Store items in different local storage slots.
+ * Minimal items: items.all : { [id]: title, ... }
+ * Item's encrypted content: items.${id} : content
  */
 
+// FIXME:
+// Items could be retrieved as a map/object to simplify & speed-up
+// lookup & updates.
 export function getAllItems() {
   const stored = window.localStorage.getItem(`${namespace}.all`);
   if (!stored) {

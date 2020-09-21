@@ -1,3 +1,6 @@
+/*
+ * Items list collection (minimal, not including item content) ~global state.
+ */
 export const initalState = {
   error: null,
   loading: null,

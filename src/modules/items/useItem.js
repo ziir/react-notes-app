@@ -3,6 +3,8 @@ import snarkdown from 'snarkdown';
 import { getItemContent } from '../storage';
 import { decrypt } from '../encryption';
 
+// Retrieve current item
+// (matched against the state, decrypted, [content markdown rendered])
 function useItem(items, id, markdown = false) {
   const [{ status, item }, setState] = React.useState({
     status: 'init',

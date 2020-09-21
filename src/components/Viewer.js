@@ -8,12 +8,16 @@ import useItem from '../modules/items/useItem';
 import './Viewer.css';
 
 function Viewer({
+  // Injected by the Router
   match: {
     params: { id },
   },
+  // Injected by the App root, as part of route props
   items,
-  dispatch,
 }) {
+  // Retrieve current item
+  // (matched against the state, decrypted, content markdown rendered)
+  // See src/modules/items/useItem.js
   const { status, item } = useItem(items, id, true);
 
   if (status === 'not-found') {

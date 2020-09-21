@@ -15,19 +15,27 @@ import Form from './Form';
 import './Edit.css';
 
 function Edit({
+  // Injected by the Router
   match: {
     params: { id },
   },
+  // Injected by the App root, as part of route props
   items,
   dispatch,
 }) {
   const router = useRouter();
   const { status, item } = useItem(items, id);
 
+  // Assuming encryption cannot fail.
+  // May be necessary to either:
+  // - manage local error state + message
+  // - dispatch({ type: ERROR }) for a ~global error state handling
   async function handleSubmit(updated) {
     updated.content = await encrypt(updated.content);
 
+    // Save encrypted item to local storage.
     saveItem({ id, ...updated });
+    // Add minimal item to items list ~global state.
     dispatch({ type: UPDATE, payload: { id, title: updated.title } });
     router.navigate(`/view/${id}`);
   }
@@ -35,7 +43,9 @@ function Edit({
   function handleDeleteClick(evt) {
     evt.preventDefault();
 
+    // Delete item from local storage.
     deleteItem(id);
+    // Delete item from items list ~global state.
     dispatch({ type: DELETE, payload: id });
     router.navigate('/');
   }
@@ -63,6 +73,7 @@ function Edit({
   if (status === 'ready' && item) {
     return (
       <div className="Edit">
+        {/* <Form> handles can handle both creation & edition */}
         <Form {...item} formId="edit-form" onSubmit={handleSubmit}>
           {({ submitting }) => (
             <div className="Edit-actions">

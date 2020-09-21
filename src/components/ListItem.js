@@ -8,6 +8,10 @@ import './ListItem.css';
 function ListItem({ id, title }) {
   return (
     <li className="ListItem">
+      {/*
+        / Retrieve the current route match params
+        / so we can highlight the current item (being viewed or edited)
+       */}
       <RouterContext.Consumer>
         {({ match }) => {
           const active = match.params.id === id;

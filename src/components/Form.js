@@ -24,12 +24,16 @@ async function handleSubmit(setSubmitting, setError, onSubmit, evt) {
 }
 
 function Form({
-  id = null,
+  // base props
   formId,
+  onSubmit,
+  // optional render function, to render adjacent elements w/ form state.
+  children: renderAdjacent = null,
+
+  // additional props for edit mode (pre-fill fields + correct Cancel button location)
+  id = null,
   title = '',
   content = '',
-  onSubmit,
-  children: renderAdjacent = null,
 }) {
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState(null);
