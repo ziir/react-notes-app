@@ -43,6 +43,7 @@ function Form({
       {error && <p className="Form-Error">{error.toString()}</p>}
       <form
         id={formId}
+        role="form"
         className="Form"
         onSubmit={handleSubmit.bind(null, setSubmitting, setError, onSubmit)}
       >

@@ -97,7 +97,7 @@ function App() {
                     <Route />
                   ) : (
                     <>
-                      <section>
+                      <section data-testid="list-section">
                         <List {...state} />
                       </section>
                       {Route && (

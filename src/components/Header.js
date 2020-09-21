@@ -6,9 +6,9 @@ import './Header.css';
 
 function Header() {
   return (
-    <header className="Header">
+    <header role="banner" className="Header">
       <h1>
-        <Link to="/">
+        <Link to="/" data-testid="home-link">
           <img src={logo} className="Header-logo" alt="" />
           React Notes App
         </Link>

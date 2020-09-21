@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creation mode (minimal props) calls a renderProp with the \`submitting\` state (with submit) 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "submitting": false,
+      },
+    ],
+    Array [
+      Object {
+        "submitting": true,
+      },
+    ],
+    Array [
+      Object {
+        "submitting": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
