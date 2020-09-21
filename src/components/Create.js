@@ -1,10 +1,10 @@
 import React from 'react';
 
-import useRouter from './modules/Router/useRouter';
-import { saveItem } from './modules/storage';
-import { encrypt } from './modules/encryption';
-import generateId from './modules/id';
-import { ADD } from './modules/state';
+import useRouter from '../modules/Router/useRouter';
+import { saveItem } from '../modules/storage';
+import { encrypt } from '../modules/encryption';
+import generateId from '../modules/id';
+import { ADD } from '../modules/state';
 
 import Form from './Form';
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from './modules/Router/Link';
+import Link from '../modules/Router/Link';
+import Loader from '../modules/UI/Loader';
 import ListItem from './ListItem';
-import Loader from './Loader';
 
 import './List.css';
 

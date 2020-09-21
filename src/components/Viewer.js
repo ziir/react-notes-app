@@ -1,7 +1,7 @@
 import React from 'react';
-import Loader from './Loader';
-import Link from './modules/Router/Link';
-import useItem from './modules/items/useItem';
+import Loader from '../modules/UI/Loader';
+import Link from '../modules/Router/Link';
+import useItem from '../modules/items/useItem';
 
 import './Viewer.css';
 

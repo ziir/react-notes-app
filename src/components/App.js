@@ -1,14 +1,14 @@
 import React from 'react';
 
-import Router from './modules/Router';
+import Router from '../modules/Router';
 import Header from './Header';
 import List from './List';
 import Create from './Create';
 import Viewer from './Viewer';
 import Edit from './Edit';
 
-import { initalState, reducer, LOADING, SET, ERROR } from './modules/state';
-import { retrieveItems } from './modules/items/retrieve';
+import { initalState, reducer, LOADING, SET, ERROR } from '../modules/state';
+import { retrieveItems } from '../modules/items/retrieve';
 
 import './App.css';
 

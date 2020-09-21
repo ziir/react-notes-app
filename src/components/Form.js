@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from './modules/Router/Link';
+import { Link } from '../modules/Router/Link';
 import './Form.css';
 
 async function handleSubmit(setSubmitting, setError, onSubmit, evt) {

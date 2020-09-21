@@ -1,9 +1,7 @@
 import React from 'react';
-
-import Link from './modules/Router/Link';
-
+import Link from '../modules/Router/Link';
+import logo from '../modules/UI/logo.svg';
 import './Header.css';
-import logo from './logo.svg';
 
 function Header() {
   return (

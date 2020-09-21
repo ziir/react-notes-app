@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from './modules/Router/Link';
-import RouterContext from './modules/Router/RouterContext';
+import Link from '../modules/Router/Link';
+import RouterContext from '../modules/Router/RouterContext';
 
 import './ListItem.css';
 

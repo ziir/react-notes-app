@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Loader from './Loader';
-import useRouter from './modules/Router/useRouter';
-import { saveItem, deleteItem } from './modules/storage';
-import { encrypt } from './modules/encryption';
-import useItem from './modules/items/useItem';
-import { UPDATE, DELETE } from './modules/state';
+import Loader from '../modules/UI/Loader';
+import useRouter from '../modules/Router/useRouter';
+import { saveItem, deleteItem } from '../modules/storage';
+import { encrypt } from '../modules/encryption';
+import useItem from '../modules/items/useItem';
+import { UPDATE, DELETE } from '../modules/state';
 
 import Form from './Form';
 
